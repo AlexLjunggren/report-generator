@@ -17,7 +17,7 @@ import com.ljunggren.reportGenerator.annotation.formatter.StringFormatterChain;
 import lombok.Getter;
 
 @Getter
-public abstract class GeneratorBase {
+public abstract class Generator {
 	
 	private List<?> data;
 	private List<Field> fields;
@@ -26,7 +26,7 @@ public abstract class GeneratorBase {
 	
 	public abstract Object generate();
 	
-	protected GeneratorBase(List<?> data) {
+	protected Generator(List<?> data) {
 		this.data = data;
 		this.fields = orderFields(findAnnotatedFields(data));
 		this.headers = generateHeaders(fields);

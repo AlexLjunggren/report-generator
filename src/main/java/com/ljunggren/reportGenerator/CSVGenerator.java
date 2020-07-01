@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
 
-public class CSVGenerator extends GeneratorBase {
+public class CSVGenerator extends Generator {
 	
 	private char delimiter;
 

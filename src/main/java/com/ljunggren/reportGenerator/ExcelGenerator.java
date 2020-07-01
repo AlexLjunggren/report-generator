@@ -8,7 +8,7 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-public class ExcelGenerator extends GeneratorBase {
+public class ExcelGenerator extends Generator {
 
 	public ExcelGenerator(List<?> data) {
 		super(data);
