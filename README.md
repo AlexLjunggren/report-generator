@@ -21,13 +21,13 @@ new CSVGenerator(List<?> data, char delimiter).generate();
 new ExcelGenerator(List<?> data).generate();
 ```
 
-##Date Formatter##
+## Date Formatter ##
 
 Format used by java.text.SimpleDateFormat
 
-##Decimal Formatter##
+## Decimal Formatter ##
 Format used by java.text.DecimalFormat
 
-##String Formatter##
+## String Formatter ##
 - Format.UPPERCASE
 - Format.LOWERCASE
