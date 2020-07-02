@@ -11,6 +11,7 @@ import org.apache.commons.lang3.reflect.FieldUtils;
 
 import com.ljunggren.reportGenerator.annotation.Reportable;
 import com.ljunggren.reportGenerator.annotation.formatter.DateFormatterChain;
+import com.ljunggren.reportGenerator.annotation.formatter.DecimalFormatterChain;
 import com.ljunggren.reportGenerator.annotation.formatter.FormatterCatchAll;
 import com.ljunggren.reportGenerator.annotation.formatter.StringFormatterChain;
 
@@ -55,9 +56,7 @@ public abstract class Generator {
 
 	private  List<String> generateHeaders(List<Field> fields) {
 		List<String> headers = new ArrayList<String>();
-		for (Field field: fields) {
-			headers.add(field.getAnnotation(Reportable.class).headerName());
-		}
+		fields.forEach(field -> headers.add(field.getAnnotation(Reportable.class).headerName()));
 		return headers;
 	}
 
@@ -84,10 +83,9 @@ public abstract class Generator {
 	protected String getValueFromItem(Item item) {
 		return new DateFormatterChain().nextChain(
 				new StringFormatterChain().nextChain(
+				new DecimalFormatterChain().nextChain(
 				new FormatterCatchAll()
-				)).format(item);
+				))).format(item);
 	}
-	
-
 	
 }

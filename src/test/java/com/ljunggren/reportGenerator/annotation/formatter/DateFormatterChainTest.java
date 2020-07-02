@@ -26,14 +26,6 @@ public class DateFormatterChainTest {
 		private Date date;
 	}
 
-	@Getter
-	@AllArgsConstructor
-	private class BadDateFormatPojo {
-		@Reportable(headerName = "Date", order = 0)
-		@DateFormatter(format = "nonsense")
-		private Date date;
-	}
-
 	private Date createDate() {
 		try {
 			return new SimpleDateFormat("yyyy/MM/dd").parse("2020/06/28");
@@ -52,6 +44,26 @@ public class DateFormatterChainTest {
 				.append("2020-06-28\r\n")
 				.toString();
 		assertEquals(expected, csv);
+	}
+
+	@Test
+	public void formatNullTest() {
+		DateFormatPojo pojo = new DateFormatPojo(null);
+		CSVGenerator generator = new CSVGenerator(Arrays.asList(new DateFormatPojo[] {pojo}), ',');
+		String csv = generator.generate();
+		String expected = new StringBuilder()
+				.append("Date\r\n")
+				.append("\r\n")
+				.toString();
+		assertEquals(expected, csv);
+	}
+
+	@Getter
+	@AllArgsConstructor
+	private class BadDateFormatPojo {
+		@Reportable(headerName = "Date", order = 0)
+		@DateFormatter(format = "nonsense")
+		private Date date;
 	}
 
 	@Test(expected = IllegalArgumentException.class)

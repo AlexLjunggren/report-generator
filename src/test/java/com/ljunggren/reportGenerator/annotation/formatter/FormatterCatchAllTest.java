@@ -33,4 +33,16 @@ public class FormatterCatchAllTest {
 		assertEquals(expected, csv);
 	}
 	
+	@Test
+	public void formatCatchAllNullTest() {
+		Pojo pojo = new Pojo(null);
+		CSVGenerator generator = new CSVGenerator(Arrays.asList(new Pojo[] {pojo}), ',');
+		String csv = generator.generate();
+		String expected = new StringBuilder()
+				.append("Name\r\n")
+				.append("\r\n")
+				.toString();
+		assertEquals(expected, csv);
+	}
+	
 }

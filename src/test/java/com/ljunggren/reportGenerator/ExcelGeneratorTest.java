@@ -54,7 +54,7 @@ public class ExcelGeneratorTest {
 	}
 	
 	@Test
-	public void generatorTest() {
+	public void generateTest() {
 		ExcelGenerator generator = new ExcelGenerator(data);
 		Workbook workbook = generator.generate();
 		assertEquals(1, workbook.getNumberOfSheets());

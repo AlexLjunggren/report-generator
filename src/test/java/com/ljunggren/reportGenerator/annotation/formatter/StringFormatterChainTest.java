@@ -56,4 +56,16 @@ public class StringFormatterChainTest {
 		assertEquals(expected, csv);
 	}
 	
+	@Test
+	public void formatLowercaseNullTest() {
+		LowercasePojo pojo = new LowercasePojo(null);
+		CSVGenerator generator = new CSVGenerator(Arrays.asList(new LowercasePojo[] {pojo}), ',');
+		String csv = generator.generate();
+		String expected = new StringBuilder()
+				.append("Name\r\n")
+				.append("\r\n")
+				.toString();
+		assertEquals(expected, csv);
+	}
+	
 }

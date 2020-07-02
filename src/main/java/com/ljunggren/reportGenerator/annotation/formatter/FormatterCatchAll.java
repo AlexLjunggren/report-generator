@@ -5,7 +5,7 @@ import com.ljunggren.reportGenerator.Item;
 public class FormatterCatchAll extends FormatterChain {
 	
 	public String format(Item item) {
-		return item.getValue().toString();
+		return item.getValue() != null ? item.getValue().toString() : null;
 	}
 
 }

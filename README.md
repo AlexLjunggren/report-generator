@@ -10,6 +10,7 @@ Annotate reportable member variables with formatters (*optional*)
 
 ```java
 @DateFormatter(format = "yyyy-MM-dd")
+@DecimalFormatter(format = "#.00")
 @StringFormatter(format = Format.UPPERCASE)
 ```
 
@@ -19,3 +20,14 @@ Instantiate and generate
 new CSVGenerator(List<?> data, char delimiter).generate();
 new ExcelGenerator(List<?> data).generate();
 ```
+
+##Date Formatter##
+
+Format used by java.text.SimpleDateFormat
+
+##Decimal Formatter##
+Format used by java.text.DecimalFormat
+
+##String Formatter##
+- Format.UPPERCASE
+- Format.LOWERCASE
