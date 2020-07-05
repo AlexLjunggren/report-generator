@@ -1,4 +1,4 @@
-package com.ljunggren.reportGenerator.annotation.formatter;
+package com.ljunggren.reportGenerator.formatter;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

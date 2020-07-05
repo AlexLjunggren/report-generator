@@ -14,6 +14,7 @@ Annotate reportable member variables with formatters (*optional*)
 @StringFormatter(format = Format.UPPERCASE)
 @CurrencyFormatter(format = Format.USD)
 @BooleanFormatter(falseText = "Not Valid", trueText = "Valid")
+@CommaFormatter
 ```
 
 Instantiate and generate
@@ -46,4 +47,8 @@ Format used by java.text.DecimalFormat
 
 - falseText
 - trueText
+
+## Comma Formatter ##
+
+No arguments
 
