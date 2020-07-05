@@ -6,10 +6,10 @@ import java.util.Arrays;
 
 import org.junit.Test;
 
-import com.ljunggren.reportGenerator.CSVGenerator;
 import com.ljunggren.reportGenerator.annotation.Reportable;
 import com.ljunggren.reportGenerator.annotation.StringFormatter;
 import com.ljunggren.reportGenerator.annotation.StringFormatter.Format;
+import com.ljunggren.reportGenerator.csv.CSVGenerator;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -64,6 +64,46 @@ public class StringFormatterChainTest {
 		String expected = new StringBuilder()
 				.append("Name\r\n")
 				.append("\r\n")
+				.toString();
+		assertEquals(expected, csv);
+	}
+	
+	@Getter
+	@AllArgsConstructor
+	private class CapitalizePojo {
+		@Reportable(headerName = "Name", order = 0)
+		@StringFormatter(format = Format.CAPITALIZE)
+		private String name;
+	}
+
+	@Test
+	public void formatCapitalizeTest() {
+		CapitalizePojo pojo = new CapitalizePojo("alex ljunggren");
+		CSVGenerator generator = new CSVGenerator(Arrays.asList(new CapitalizePojo[] {pojo}), ',');
+		String csv = generator.generate();
+		String expected = new StringBuilder()
+				.append("Name\r\n")
+				.append("Alex Ljunggren\r\n")
+				.toString();
+		assertEquals(expected, csv);
+	}
+	
+	@Getter
+	@AllArgsConstructor
+	private class CapitalizeFullyPojo {
+		@Reportable(headerName = "Name", order = 0)
+		@StringFormatter(format = Format.CAPITALIZE_FULLY)
+		private String name;
+	}
+
+	@Test
+	public void formatCapitalizeFullyTest() {
+		CapitalizeFullyPojo pojo = new CapitalizeFullyPojo("aLEX lJUNGGREN");
+		CSVGenerator generator = new CSVGenerator(Arrays.asList(new CapitalizeFullyPojo[] {pojo}), ',');
+		String csv = generator.generate();
+		String expected = new StringBuilder()
+				.append("Name\r\n")
+				.append("Alex Ljunggren\r\n")
 				.toString();
 		assertEquals(expected, csv);
 	}

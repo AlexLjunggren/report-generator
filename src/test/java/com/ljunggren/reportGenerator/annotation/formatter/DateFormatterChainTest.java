@@ -9,9 +9,9 @@ import java.util.Date;
 
 import org.junit.Test;
 
-import com.ljunggren.reportGenerator.CSVGenerator;
 import com.ljunggren.reportGenerator.annotation.DateFormatter;
 import com.ljunggren.reportGenerator.annotation.Reportable;
+import com.ljunggren.reportGenerator.csv.CSVGenerator;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

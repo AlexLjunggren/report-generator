@@ -10,6 +10,8 @@ import java.util.List;
 import org.apache.commons.lang3.reflect.FieldUtils;
 
 import com.ljunggren.reportGenerator.annotation.Reportable;
+import com.ljunggren.reportGenerator.annotation.formatter.BooleanFormatterChain;
+import com.ljunggren.reportGenerator.annotation.formatter.CurrencyFormatterChain;
 import com.ljunggren.reportGenerator.annotation.formatter.DateFormatterChain;
 import com.ljunggren.reportGenerator.annotation.formatter.DecimalFormatterChain;
 import com.ljunggren.reportGenerator.annotation.formatter.FormatterCatchAll;
@@ -84,8 +86,10 @@ public abstract class Generator {
 		return new DateFormatterChain().nextChain(
 				new StringFormatterChain().nextChain(
 				new DecimalFormatterChain().nextChain(
+				new CurrencyFormatterChain().nextChain(
+				new BooleanFormatterChain().nextChain(
 				new FormatterCatchAll()
-				))).format(item);
+						))))).format(item);
 	}
 	
 }

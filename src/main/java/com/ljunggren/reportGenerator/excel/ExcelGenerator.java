@@ -1,4 +1,4 @@
-package com.ljunggren.reportGenerator;
+package com.ljunggren.reportGenerator.excel;
 
 import java.util.List;
 
@@ -7,6 +7,10 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+import com.ljunggren.reportGenerator.Generator;
+import com.ljunggren.reportGenerator.Item;
+import com.ljunggren.reportGenerator.Record;
 
 public class ExcelGenerator extends Generator {
 

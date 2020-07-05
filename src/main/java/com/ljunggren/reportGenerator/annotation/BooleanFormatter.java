@@ -7,16 +7,9 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
-public @interface StringFormatter {
-	
-	Format format();
+public @interface BooleanFormatter {
 
-	public enum Format {
-		UPPERCASE,
-		LOWERCASE,
-		CAPITALIZE,
-		CAPITALIZE_FULLY;
-	}
+	String trueText();
+	String falseText();
 	
 }
-

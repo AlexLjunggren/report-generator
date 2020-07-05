@@ -20,7 +20,8 @@ public class DecimalFormatterChain extends FormatterChain {
 	private boolean isNumberInstance(Object value) {
 		return value instanceof Integer ||
 				value instanceof Double ||
-				value instanceof Float;
+				value instanceof Float ||
+				value instanceof Long;
 	}
 
 }

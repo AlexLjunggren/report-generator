@@ -1,4 +1,4 @@
-package com.ljunggren.reportGenerator;
+package com.ljunggren.reportGenerator.csv;
 
 import static org.junit.Assert.assertEquals;
 
@@ -9,6 +9,10 @@ import java.util.Date;
 import java.util.List;
 
 import org.junit.Test;
+
+import com.ljunggren.reportGenerator.Record;
+import com.ljunggren.reportGenerator.TestPojo;
+import com.ljunggren.reportGenerator.csv.CSVGenerator;
 
 public class CSVGeneratorTest {
 	

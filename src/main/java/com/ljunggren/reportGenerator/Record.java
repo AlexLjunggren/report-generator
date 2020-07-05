@@ -2,16 +2,13 @@ package com.ljunggren.reportGenerator;
 
 import java.util.List;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+@Getter
+@AllArgsConstructor
 public class Record {
 
 	private List<Item> items;
-
-	public Record(List<Item> items) {
-		this.items = items;
-	}
-
-	public List<Item> getItems() {
-		return items;
-	}
 
 }

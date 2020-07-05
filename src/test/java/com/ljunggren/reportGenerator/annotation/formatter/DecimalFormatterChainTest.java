@@ -6,9 +6,9 @@ import java.util.Arrays;
 
 import org.junit.Test;
 
-import com.ljunggren.reportGenerator.CSVGenerator;
 import com.ljunggren.reportGenerator.annotation.DecimalFormatter;
 import com.ljunggren.reportGenerator.annotation.Reportable;
+import com.ljunggren.reportGenerator.csv.CSVGenerator;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -91,6 +91,26 @@ public class DecimalFormatterChainTest {
 		String expected = new StringBuilder()
 				.append("Balance\r\n")
 				.append("\r\n")
+				.toString();
+		assertEquals(expected, csv);
+	}
+
+	@Getter
+	@AllArgsConstructor
+	private class LongFormatPojo {
+		@Reportable(headerName = "Balance", order = 0)
+		@DecimalFormatter(format = "#.00")
+		private long balance;
+	}
+
+	@Test
+	public void formatLongObjectTest() {
+		LongFormatPojo pojo = new LongFormatPojo(250L);
+		CSVGenerator generator = new CSVGenerator(Arrays.asList(new LongFormatPojo[] {pojo}), ',');
+		String csv = generator.generate();
+		String expected = new StringBuilder()
+				.append("Balance\r\n")
+				.append("250.00\r\n")
 				.toString();
 		assertEquals(expected, csv);
 	}

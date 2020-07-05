@@ -1,4 +1,4 @@
-package com.ljunggren.reportGenerator;
+package com.ljunggren.reportGenerator.excel;
 
 import static org.junit.Assert.*;
 
@@ -12,6 +12,10 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.junit.Test;
+
+import com.ljunggren.reportGenerator.Record;
+import com.ljunggren.reportGenerator.TestPojo;
+import com.ljunggren.reportGenerator.excel.ExcelGenerator;
 
 public class ExcelGeneratorTest {
 

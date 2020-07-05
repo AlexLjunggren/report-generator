@@ -1,4 +1,4 @@
-package com.ljunggren.reportGenerator;
+package com.ljunggren.reportGenerator.csv;
 
 import java.io.IOException;
 import java.io.StringWriter;
@@ -8,6 +8,9 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
+
+import com.ljunggren.reportGenerator.Generator;
+import com.ljunggren.reportGenerator.Record;
 
 public class CSVGenerator extends Generator {
 	

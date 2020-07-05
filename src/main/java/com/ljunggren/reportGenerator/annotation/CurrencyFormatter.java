@@ -7,15 +7,12 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
-public @interface StringFormatter {
-	
+public @interface CurrencyFormatter {
+
 	Format format();
 
 	public enum Format {
-		UPPERCASE,
-		LOWERCASE,
-		CAPITALIZE,
-		CAPITALIZE_FULLY;
+		USD;
 	}
 	
 }
