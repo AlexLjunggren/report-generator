@@ -23,7 +23,7 @@ public class CurrencyFormatterChain extends FormatterChain {
 				value instanceof Long;
 	}
 	
-	private String format(Object value, CurrencyFormatter.Format format) {
+	private String format(Object value, CurrencyFormatter.Currency format) {
 		switch  (format) {
 		case USD: return String.format("$%s", new DecimalFormat("#.00").format(value));
 		default: return value.toString();

@@ -7,7 +7,7 @@ import java.util.Arrays;
 import org.junit.Test;
 
 import com.ljunggren.reportGenerator.annotation.CurrencyFormatter;
-import com.ljunggren.reportGenerator.annotation.CurrencyFormatter.Format;
+import com.ljunggren.reportGenerator.annotation.CurrencyFormatter.Currency;
 import com.ljunggren.reportGenerator.annotation.Reportable;
 import com.ljunggren.reportGenerator.csv.CSVGenerator;
 
@@ -20,7 +20,7 @@ public class CurrencyFormatterChainTest {
 	@AllArgsConstructor
 	private class USDFormatIntPojo {
 		@Reportable(headerName = "Balance", order = 0)
-		@CurrencyFormatter(format = Format.USD)
+		@CurrencyFormatter(format = Currency.USD)
 		private int balance;
 	}
 
@@ -40,7 +40,7 @@ public class CurrencyFormatterChainTest {
 	@AllArgsConstructor
 	private class USDFormatDoublePojo {
 		@Reportable(headerName = "Balance", order = 0)
-		@CurrencyFormatter(format = Format.USD)
+		@CurrencyFormatter(format = Currency.USD)
 		private double balance;
 	}
 
@@ -60,7 +60,7 @@ public class CurrencyFormatterChainTest {
 	@AllArgsConstructor
 	private class USDFormatFloatPojo {
 		@Reportable(headerName = "Balance", order = 0)
-		@CurrencyFormatter(format = Format.USD)
+		@CurrencyFormatter(format = Currency.USD)
 		private double balance;
 	}
 
@@ -80,7 +80,7 @@ public class CurrencyFormatterChainTest {
 	@AllArgsConstructor
 	private class USDFormatLongPojo {
 		@Reportable(headerName = "Balance", order = 0)
-		@CurrencyFormatter(format = Format.USD)
+		@CurrencyFormatter(format = Currency.USD)
 		private long balance;
 	}
 

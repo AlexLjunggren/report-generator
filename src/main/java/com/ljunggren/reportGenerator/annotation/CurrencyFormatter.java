@@ -9,9 +9,9 @@ import java.lang.annotation.Target;
 @Target(ElementType.FIELD)
 public @interface CurrencyFormatter {
 
-	Format format();
+	Currency format();
 
-	public enum Format {
+	public enum Currency {
 		USD;
 	}
 	

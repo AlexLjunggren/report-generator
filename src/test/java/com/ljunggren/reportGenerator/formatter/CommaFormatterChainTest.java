@@ -57,26 +57,6 @@ public class CommaFormatterChainTest {
 
 	@Getter
 	@AllArgsConstructor
-	private class FormatFloatPojo {
-		@Reportable(headerName = "Balance", order = 0)
-		@CommaFormatter
-		private float balance;
-	}
-
-	@Test
-	public void formatFloatTest() {
-		FormatFloatPojo pojo = new FormatFloatPojo(2500000f);
-		CSVGenerator generator = new CSVGenerator(Arrays.asList(new FormatFloatPojo[] {pojo}), ',');
-		String csv = generator.generate();
-		String expected = new StringBuilder()
-				.append("Balance\r\n")
-				.append("\"2,500,000\"\r\n")
-				.toString();
-		assertEquals(expected, csv);
-	}
-
-	@Getter
-	@AllArgsConstructor
 	private class FormatLongPojo {
 		@Reportable(headerName = "Balance", order = 0)
 		@CommaFormatter
