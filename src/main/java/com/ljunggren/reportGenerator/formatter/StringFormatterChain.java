@@ -10,7 +10,8 @@ public class StringFormatterChain extends FormatterChain{
 	public String format(Item item) {
 		StringFormatter formatter = item.getField().getAnnotation(StringFormatter.class);
 		if (formatter != null && item.getValue() instanceof String) {
-			return format((String) item.getValue(), formatter.format());
+			String value = format(item.getValue().toString(), formatter.format());
+			item.setValue(value);
 		}
 		return nextChain.format(item);
 	}

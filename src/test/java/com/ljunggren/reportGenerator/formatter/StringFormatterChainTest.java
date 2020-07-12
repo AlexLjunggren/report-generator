@@ -12,11 +12,9 @@ import com.ljunggren.reportGenerator.annotation.StringFormatter.Format;
 import com.ljunggren.reportGenerator.csv.CSVGenerator;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 
 public class StringFormatterChainTest {
 	
-	@Getter
 	@AllArgsConstructor
 	private class UppercasePojo {
 		@Reportable(headerName = "Name", order = 0)
@@ -36,7 +34,6 @@ public class StringFormatterChainTest {
 		assertEquals(expected, csv);
 	}
 	
-	@Getter
 	@AllArgsConstructor
 	private class LowercasePojo {
 		@Reportable(headerName = "Name", order = 0)
@@ -68,7 +65,6 @@ public class StringFormatterChainTest {
 		assertEquals(expected, csv);
 	}
 	
-	@Getter
 	@AllArgsConstructor
 	private class CapitalizePojo {
 		@Reportable(headerName = "Name", order = 0)
@@ -88,7 +84,6 @@ public class StringFormatterChainTest {
 		assertEquals(expected, csv);
 	}
 	
-	@Getter
 	@AllArgsConstructor
 	private class CapitalizeFullyPojo {
 		@Reportable(headerName = "Name", order = 0)

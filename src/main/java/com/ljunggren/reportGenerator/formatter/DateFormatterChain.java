@@ -12,7 +12,8 @@ public class DateFormatterChain extends FormatterChain {
 		DateFormatter formatter = item.getField().getAnnotation(DateFormatter.class);
 		if (formatter != null && item.getValue() instanceof Date) {
 			SimpleDateFormat simpleDateFormat = new SimpleDateFormat(formatter.format());
-			return simpleDateFormat.format(item.getValue());
+			String value = simpleDateFormat.format(item.getValue());
+			item.setValue(value);
 		}
 		return nextChain.format(item);
 	}

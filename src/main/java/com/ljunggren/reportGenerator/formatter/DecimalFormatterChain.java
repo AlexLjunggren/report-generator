@@ -12,7 +12,8 @@ public class DecimalFormatterChain extends FormatterChain {
 		DecimalFormatter formatter = item.getField().getAnnotation(DecimalFormatter.class);
 		if (formatter != null && isNumberInstance(item.getValue())) {
 			DecimalFormat decimalFormat = new DecimalFormat(formatter.format());
-			return decimalFormat.format(item.getValue());
+			String value = decimalFormat.format(item.getValue());
+			item.setValue(value);
 		}
 		return nextChain.format(item);
 	}

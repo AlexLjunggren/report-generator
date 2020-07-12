@@ -1,6 +1,6 @@
 package com.ljunggren.reportGenerator.formatter;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -14,11 +14,9 @@ import com.ljunggren.reportGenerator.annotation.Reportable;
 import com.ljunggren.reportGenerator.csv.CSVGenerator;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 
 public class DateFormatterChainTest {
 	
-	@Getter
 	@AllArgsConstructor
 	private class DateFormatPojo {
 		@Reportable(headerName = "Date", order = 0)
@@ -58,7 +56,6 @@ public class DateFormatterChainTest {
 		assertEquals(expected, csv);
 	}
 
-	@Getter
 	@AllArgsConstructor
 	private class BadDateFormatPojo {
 		@Reportable(headerName = "Date", order = 0)

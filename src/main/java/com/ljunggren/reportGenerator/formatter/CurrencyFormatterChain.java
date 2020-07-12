@@ -11,7 +11,8 @@ public class CurrencyFormatterChain extends FormatterChain {
 	public String format(Item item) {
 		CurrencyFormatter formatter = item.getField().getAnnotation(CurrencyFormatter.class);
 		if (formatter != null && isNumberInstance(item.getValue())) {
-			return format(item.getValue(), formatter.format());
+			String value = format(item.getValue(), formatter.format());
+			item.setValue(value);
 		}
 		return nextChain.format(item);
 	}

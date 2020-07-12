@@ -12,11 +12,9 @@ import com.ljunggren.reportGenerator.annotation.Reportable;
 import com.ljunggren.reportGenerator.csv.CSVGenerator;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 
 public class CurrencyFormatterChainTest {
 
-	@Getter
 	@AllArgsConstructor
 	private class USDFormatIntPojo {
 		@Reportable(headerName = "Balance", order = 0)
@@ -36,7 +34,6 @@ public class CurrencyFormatterChainTest {
 		assertEquals(expected, csv);
 	}
 
-	@Getter
 	@AllArgsConstructor
 	private class USDFormatDoublePojo {
 		@Reportable(headerName = "Balance", order = 0)
@@ -56,7 +53,6 @@ public class CurrencyFormatterChainTest {
 		assertEquals(expected, csv);
 	}
 
-	@Getter
 	@AllArgsConstructor
 	private class USDFormatFloatPojo {
 		@Reportable(headerName = "Balance", order = 0)
@@ -76,7 +72,6 @@ public class CurrencyFormatterChainTest {
 		assertEquals(expected, csv);
 	}
 
-	@Getter
 	@AllArgsConstructor
 	private class USDFormatLongPojo {
 		@Reportable(headerName = "Balance", order = 0)

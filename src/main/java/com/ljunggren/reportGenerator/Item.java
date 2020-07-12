@@ -3,9 +3,9 @@ package com.ljunggren.reportGenerator;
 import java.lang.reflect.Field;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 
-@Getter
+@Data
 @AllArgsConstructor
 public class Item {
 

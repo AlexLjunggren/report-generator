@@ -14,7 +14,9 @@ Annotate reportable member variables with formatters (*optional*)
 @StringFormatter(format = Format.UPPERCASE)
 @CurrencyFormatter(format = Currency.USD)
 @BooleanFormatter(falseText = "Not Valid", trueText = "Valid")
+@NullFormatter(replacementText = "No Data")
 @CommaFormatter
+@TrimFormatter
 ```
 
 Instantiate and generate
@@ -54,6 +56,9 @@ Format used by java.text.DecimalFormat
 @StringFormatter(format = Format.UPPERCASE)
 ```
 
+Data types supported 
+- String
+
 Options  
 - Format.UPPERCASE
 - Format.LOWERCASE
@@ -85,6 +90,18 @@ Arguments
 - falseText
 - trueText
 
+## Null Formatter ##
+
+```java
+@NullFormatter(replacementText = "No Data")
+```
+
+Data ytpes supported
+- All Objects
+
+Arguments
+- replacementText
+
 ## Comma Formatter ##
 
 ```java
@@ -95,3 +112,12 @@ Data types supported
 - Integer
 - Double
 - Long
+
+## Trim Formatter ##
+
+```java
+@TrimFormatter
+```
+
+Data types supported 
+- String

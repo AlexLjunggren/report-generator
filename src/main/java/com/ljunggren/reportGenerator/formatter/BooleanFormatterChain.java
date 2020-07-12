@@ -10,7 +10,8 @@ public class BooleanFormatterChain extends FormatterChain {
 		BooleanFormatter formatter = item.getField().getAnnotation(BooleanFormatter.class);
 		if (formatter != null && item.getValue() instanceof Boolean) {
 			boolean isTrue = (boolean) item.getValue();
-			return isTrue ? formatter.trueText() : formatter.falseText();
+			String value = isTrue ? formatter.trueText() : formatter.falseText();
+			item.setValue(value);
 		}
 		return nextChain.format(item);
 	}

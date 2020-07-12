@@ -11,7 +11,8 @@ public class CommaFormatterChain extends FormatterChain {
 	public String format(Item item) {
 		CommaFormatter formatter = item.getField().getAnnotation(CommaFormatter.class);
 		if (formatter != null && isNumberInstance(item.getValue())) {
-			return format(item.getValue());
+			String value = format(item.getValue());
+			item.setValue(value);
 		}
 		return nextChain.format(item);
 	}

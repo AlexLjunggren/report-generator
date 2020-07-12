@@ -16,7 +16,9 @@ import com.ljunggren.reportGenerator.formatter.CurrencyFormatterChain;
 import com.ljunggren.reportGenerator.formatter.DateFormatterChain;
 import com.ljunggren.reportGenerator.formatter.DecimalFormatterChain;
 import com.ljunggren.reportGenerator.formatter.FormatterCatchAll;
+import com.ljunggren.reportGenerator.formatter.NullFormatterChain;
 import com.ljunggren.reportGenerator.formatter.StringFormatterChain;
+import com.ljunggren.reportGenerator.formatter.TrimFormatterChain;
 
 import lombok.Getter;
 
@@ -90,8 +92,10 @@ public abstract class Generator {
 				new CurrencyFormatterChain().nextChain(
 				new BooleanFormatterChain().nextChain(
 				new CommaFormatterChain().nextChain(
+				new TrimFormatterChain().nextChain(
+				new NullFormatterChain().nextChain(
 				new FormatterCatchAll()
-						)))))).format(item);
+						)))))))).format(item);
 	}
 	
 }

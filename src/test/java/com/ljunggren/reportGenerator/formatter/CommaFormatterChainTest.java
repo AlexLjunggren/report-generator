@@ -11,11 +11,9 @@ import com.ljunggren.reportGenerator.annotation.Reportable;
 import com.ljunggren.reportGenerator.csv.CSVGenerator;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 
 public class CommaFormatterChainTest {
 
-	@Getter
 	@AllArgsConstructor
 	private class FormatIntPojo {
 		@Reportable(headerName = "Balance", order = 0)
@@ -35,7 +33,6 @@ public class CommaFormatterChainTest {
 		assertEquals(expected, csv);
 	}
 
-	@Getter
 	@AllArgsConstructor
 	private class FormatDoublePojo {
 		@Reportable(headerName = "Balance", order = 0)
@@ -55,7 +52,6 @@ public class CommaFormatterChainTest {
 		assertEquals(expected, csv);
 	}
 
-	@Getter
 	@AllArgsConstructor
 	private class FormatLongPojo {
 		@Reportable(headerName = "Balance", order = 0)
@@ -75,7 +71,6 @@ public class CommaFormatterChainTest {
 		assertEquals(expected, csv);
 	}
 
-	@Getter
 	@AllArgsConstructor
 	private class FormatNulltPojo {
 		@Reportable(headerName = "Balance", order = 0)
