@@ -67,6 +67,18 @@ public class CSVGeneratorTest {
 	}
 	
 	@Test
+	public void generateWithPipeDelimiterTest() {
+		CSVGenerator generator = new CSVGenerator(data, '|');
+		String csv = generator.generate();
+		String expected = new StringBuilder()
+				.append("Year|Name|Group|Touch Date\r\n")
+				.append("2020|ALEX|Marketing|2020-06-28\r\n")
+				.append("2021|CHRIS|Sales|2020-06-28\r\n")
+				.toString();
+		assertEquals(expected, csv);
+	}
+	
+	@Test
 	public void generateNullTest() {
 		CSVGenerator generator = new CSVGenerator(null, ',');
 		String csv = generator.generate();

@@ -1,5 +1,7 @@
 package com.ljunggren.reportGenerator.formatter;
 
+import java.lang.annotation.Annotation;
+
 import com.ljunggren.reportGenerator.Item;
 
 public abstract class FormatterChain {
@@ -11,6 +13,6 @@ public abstract class FormatterChain {
 		return this;
 	}
 	
-	public abstract String format(Item item);
+	public abstract Item format(Annotation annotation, Item item);
 	
 }

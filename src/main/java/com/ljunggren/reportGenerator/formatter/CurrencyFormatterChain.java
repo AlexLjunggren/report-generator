@@ -1,20 +1,21 @@
 package com.ljunggren.reportGenerator.formatter;
 
+import java.lang.annotation.Annotation;
 import java.text.DecimalFormat;
 
 import com.ljunggren.reportGenerator.Item;
 import com.ljunggren.reportGenerator.annotation.CurrencyFormatter;
 
 public class CurrencyFormatterChain extends FormatterChain {
-
+	
 	@Override
-	public String format(Item item) {
-		CurrencyFormatter formatter = item.getField().getAnnotation(CurrencyFormatter.class);
-		if (formatter != null && isNumberInstance(item.getValue())) {
+	public Item format(Annotation annotation, Item item) {
+		if (annotation.annotationType() == CurrencyFormatter.class && isNumberInstance(item.getValue())) {
+			CurrencyFormatter formatter = (CurrencyFormatter) annotation;
 			String value = format(item.getValue(), formatter.format());
 			item.setValue(value);
 		}
-		return nextChain.format(item);
+		return nextChain.format(annotation, item);
 	}
 
 	private boolean isNumberInstance(Object value) {

@@ -1,5 +1,6 @@
 package com.ljunggren.reportGenerator.formatter;
 
+import java.lang.annotation.Annotation;
 import java.text.DecimalFormat;
 
 import com.ljunggren.reportGenerator.Item;
@@ -8,14 +9,14 @@ import com.ljunggren.reportGenerator.annotation.DecimalFormatter;
 public class DecimalFormatterChain extends FormatterChain {
 
 	@Override
-	public String format(Item item) {
-		DecimalFormatter formatter = item.getField().getAnnotation(DecimalFormatter.class);
-		if (formatter != null && isNumberInstance(item.getValue())) {
+	public Item format(Annotation annotation, Item item) {
+		if (annotation.annotationType() == DecimalFormatter.class && isNumberInstance(item.getValue())) {
+			DecimalFormatter formatter = (DecimalFormatter) annotation;
 			DecimalFormat decimalFormat = new DecimalFormat(formatter.format());
 			String value = decimalFormat.format(item.getValue());
 			item.setValue(value);
 		}
-		return nextChain.format(item);
+		return nextChain.format(annotation, item);
 	}
 	
 	private boolean isNumberInstance(Object value) {

@@ -22,8 +22,8 @@ Annotate reportable member variables with formatters (*optional*)
 Instantiate and generate
 
 ```java
-new CSVGenerator(List<?> data, char delimiter).generate();
-new ExcelGenerator(List<?> data).generate();
+new CSVGenerator(List<?> data, char delimiter).generate(); // returns CSV String
+new ExcelGenerator(List<?> data).generate(); // returns POI Workbook
 ```
 
 ## Date Formatter ##

@@ -1,5 +1,6 @@
 package com.ljunggren.reportGenerator;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -86,6 +87,12 @@ public abstract class Generator {
 	}
 	
 	protected String getValueFromItem(Item item) {
+		Annotation[] annotations = item.getField().getAnnotations();
+		Arrays.asList(annotations).forEach(annotation -> processChain(annotation, item));
+		return item.getValue() != null ? item.getValue().toString() : null;
+	}
+	
+	private Item processChain(Annotation annotation, Item item) {
 		return new DateFormatterChain().nextChain(
 				new StringFormatterChain().nextChain(
 				new DecimalFormatterChain().nextChain(
@@ -95,7 +102,7 @@ public abstract class Generator {
 				new TrimFormatterChain().nextChain(
 				new NullFormatterChain().nextChain(
 				new FormatterCatchAll()
-						)))))))).format(item);
+						)))))))).format(annotation, item);
 	}
 	
 }

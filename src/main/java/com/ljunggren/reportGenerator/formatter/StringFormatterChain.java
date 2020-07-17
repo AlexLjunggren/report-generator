@@ -1,5 +1,7 @@
 package com.ljunggren.reportGenerator.formatter;
 
+import java.lang.annotation.Annotation;
+
 import org.apache.commons.text.WordUtils;
 
 import com.ljunggren.reportGenerator.Item;
@@ -7,13 +9,13 @@ import com.ljunggren.reportGenerator.annotation.StringFormatter;
 
 public class StringFormatterChain extends FormatterChain{
 
-	public String format(Item item) {
-		StringFormatter formatter = item.getField().getAnnotation(StringFormatter.class);
-		if (formatter != null && item.getValue() instanceof String) {
+	public Item format(Annotation annotation, Item item) {
+		if (annotation.annotationType() == StringFormatter.class && item.getValue() instanceof String) {
+			StringFormatter formatter = (StringFormatter) annotation;
 			String value = format(item.getValue().toString(), formatter.format());
 			item.setValue(value);
 		}
-		return nextChain.format(item);
+		return nextChain.format(annotation, item);
 	}
 	
 	private String format(String value, StringFormatter.Format format) {

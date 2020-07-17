@@ -6,6 +6,7 @@ import java.util.Arrays;
 
 import org.junit.Test;
 
+import com.ljunggren.reportGenerator.annotation.NullFormatter;
 import com.ljunggren.reportGenerator.annotation.Reportable;
 import com.ljunggren.reportGenerator.annotation.StringFormatter;
 import com.ljunggren.reportGenerator.annotation.StringFormatter.Format;
@@ -52,6 +53,27 @@ public class FormatIntegrationTest {
 		String expected = new StringBuilder()
 				.append("Name\r\n")
 				.append("ALEX\r\n")
+				.toString();
+		assertEquals(expected, csv);
+	}
+	
+	@AllArgsConstructor
+	private class NullTrimCapitalizeFullPojo {
+		@Reportable(headerName = "Name", order = 0)
+		@NullFormatter(replacementText = " no data ")
+		@StringFormatter(format = Format.CAPITALIZE_FULLY)
+		@TrimFormatter
+		private String name;
+	}
+
+	@Test
+	public void NullTrimCapitalizeFullTest() {
+		NullTrimCapitalizeFullPojo pojo = new NullTrimCapitalizeFullPojo(null);
+		CSVGenerator generator = new CSVGenerator(Arrays.asList(new NullTrimCapitalizeFullPojo[] {pojo}), ',');
+		String csv = generator.generate();
+		String expected = new StringBuilder()
+				.append("Name\r\n")
+				.append("No Data\r\n")
 				.toString();
 		assertEquals(expected, csv);
 	}

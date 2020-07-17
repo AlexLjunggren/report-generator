@@ -1,5 +1,6 @@
 package com.ljunggren.reportGenerator.formatter;
 
+import java.lang.annotation.Annotation;
 import java.text.NumberFormat;
 
 import com.ljunggren.reportGenerator.Item;
@@ -8,13 +9,12 @@ import com.ljunggren.reportGenerator.annotation.CommaFormatter;
 public class CommaFormatterChain extends FormatterChain {
 
 	@Override
-	public String format(Item item) {
-		CommaFormatter formatter = item.getField().getAnnotation(CommaFormatter.class);
-		if (formatter != null && isNumberInstance(item.getValue())) {
+	public Item format(Annotation annotation, Item item) {
+		if (annotation.annotationType() == CommaFormatter.class && isNumberInstance(item.getValue())) {
 			String value = format(item.getValue());
 			item.setValue(value);
 		}
-		return nextChain.format(item);
+		return nextChain.format(annotation, item);
 	}
 
 	private boolean isNumberInstance(Object value) {
