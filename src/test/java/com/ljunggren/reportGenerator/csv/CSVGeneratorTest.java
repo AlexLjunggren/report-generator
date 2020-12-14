@@ -34,10 +34,9 @@ public class CSVGeneratorTest {
 	public void generatorConstructorTest() {
 		CSVGenerator generator = new CSVGenerator(data, ',');
 		List<String> expectedHeaders = Arrays.asList(new String[] {
-				"Year", "Name", "Group", "Touch Date"
+				"Year", "Name", "Group", "Application", "Touch Date"
 		});
 		assertEquals(data, generator.getData());
-		assertEquals(4, generator.getFields().size());
 		assertEquals(expectedHeaders, generator.getHeaders());
 		assertEquals(2, generator.getRecords().size());
 		
@@ -45,13 +44,15 @@ public class CSVGeneratorTest {
 		assertEquals(2020, record1.getItems().get(0).getValue());
 		assertEquals("Alex", record1.getItems().get(1).getValue());
 		assertEquals("Marketing", record1.getItems().get(2).getValue());
-		assertEquals(date, record1.getItems().get(3).getValue());
+        assertEquals("Report Generator", record1.getItems().get(3).getValue());
+		assertEquals(date, record1.getItems().get(4).getValue());
 		
 		Record record2 = generator.getRecords().get(1);
 		assertEquals(2021, record2.getItems().get(0).getValue());
 		assertEquals("Chris", record2.getItems().get(1).getValue());
 		assertEquals("Sales", record2.getItems().get(2).getValue());
-		assertEquals(date, record2.getItems().get(3).getValue());
+        assertEquals("Report Generator", record1.getItems().get(3).getValue());
+		assertEquals(date, record2.getItems().get(4).getValue());
 	}
 	
 	@Test
@@ -59,9 +60,9 @@ public class CSVGeneratorTest {
 		CSVGenerator generator = new CSVGenerator(data, ',');
 		String csv = generator.generate();
 		String expected = new StringBuilder()
-				.append("Year,Name,Group,Touch Date\r\n")
-				.append("2020,ALEX,Marketing,2020-06-28\r\n")
-				.append("2021,CHRIS,Sales,2020-06-28\r\n")
+				.append("Year,Name,Group,Application,Touch Date\r\n")
+				.append("2020,ALEX,Marketing,Report Generator,2020-06-28\r\n")
+				.append("2021,CHRIS,Sales,Report Generator,2020-06-28\r\n")
 				.toString();
 		assertEquals(expected, csv);
 	}
@@ -71,9 +72,9 @@ public class CSVGeneratorTest {
 		CSVGenerator generator = new CSVGenerator(data, '|');
 		String csv = generator.generate();
 		String expected = new StringBuilder()
-				.append("Year|Name|Group|Touch Date\r\n")
-				.append("2020|ALEX|Marketing|2020-06-28\r\n")
-				.append("2021|CHRIS|Sales|2020-06-28\r\n")
+				.append("Year|Name|Group|Application|Touch Date\r\n")
+				.append("2020|ALEX|Marketing|Report Generator|2020-06-28\r\n")
+				.append("2021|CHRIS|Sales|Report Generator|2020-06-28\r\n")
 				.toString();
 		assertEquals(expected, csv);
 	}

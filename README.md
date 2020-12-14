@@ -1,6 +1,6 @@
 ## Report Generator ##
 
-Annotate member variables that will appear on the report
+Annotate member variables or methods that will appear on the report
 
 ```java
 @Reportable(headerName = "Name", order = 1)
