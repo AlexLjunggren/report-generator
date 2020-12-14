@@ -29,5 +29,10 @@ public class TestPojo {
 	@Reportable(headerName = "Touch Date", order = 99)
 	@DateFormatter(format = "yyyy-MM-dd")
 	private Date touchDate;
+	
+    @Reportable(headerName = "Application", order = 3)
+	public String getApplication() {
+	    return "Report Generator";
+	}
 
 }
