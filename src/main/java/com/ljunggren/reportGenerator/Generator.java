@@ -2,6 +2,7 @@ package com.ljunggren.reportGenerator;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -9,8 +10,10 @@ import java.util.Comparator;
 import java.util.List;
 
 import org.apache.commons.lang3.reflect.FieldUtils;
+import org.apache.commons.lang3.reflect.MethodUtils;
 
 import com.ljunggren.reportGenerator.annotation.Reportable;
+import com.ljunggren.reportGenerator.annotation.ReportableMethod;
 import com.ljunggren.reportGenerator.formatter.BooleanFormatterChain;
 import com.ljunggren.reportGenerator.formatter.CommaFormatterChain;
 import com.ljunggren.reportGenerator.formatter.CurrencyFormatterChain;
@@ -28,6 +31,7 @@ public abstract class Generator {
 	
 	private List<?> data;
 	private List<Field> fields;
+	private List<Method> methods;
 	private List<String> headers;
 	private List<Record> records;
 	
@@ -36,17 +40,18 @@ public abstract class Generator {
 	protected Generator(List<?> data) {
 		this.data = data;
 		this.fields = orderFields(findAnnotatedFields(data));
+		this.methods = orderMethods(findAnnotatedMethods(data));
 		this.headers = generateHeaders(fields);
 		this.records = generateRecords(fields, data);
 	}
 	
 	private List<Field> findAnnotatedFields(List<?> data) {
-		if (data != null && !data.isEmpty()) {
-			Class<?> clazz = data.get(0).getClass();
-			Field[] fields = FieldUtils.getFieldsWithAnnotation(clazz, Reportable.class);
-			return Arrays.asList(fields);
+		if (data == null || data.isEmpty()) {
+	        return new ArrayList<Field>();
 		}
-		return new ArrayList<Field>();
+		Class<?> clazz = data.get(0).getClass();
+		Field[] fields = FieldUtils.getFieldsWithAnnotation(clazz, Reportable.class);
+		return Arrays.asList(fields);
 	}
 	
 	private List<Field> orderFields(List<Field> fields) {
@@ -58,6 +63,26 @@ public abstract class Generator {
 			}
 		});
 		return fields;
+	}
+	
+	private List<Method> orderMethods(List<Method> methods) {
+	    Collections.sort(methods, new Comparator<Method>() {
+            public int compare(Method method1, Method method2) {
+                int method1Order = method1.getAnnotation(ReportableMethod.class).order();
+                int method2Order = method2.getAnnotation(ReportableMethod.class).order();
+                return method1Order - method2Order;
+           }
+	    });
+	    return methods;
+	}
+	
+	private List<Method> findAnnotatedMethods(List<?> data) {
+	    if (data == null || data.isEmpty()) {
+	        return new ArrayList<Method>();
+	    }
+        Class<?> clazz = data.get(0).getClass();
+        Method[] methods = MethodUtils.getMethodsWithAnnotation(clazz, ReportableMethod.class);
+        return Arrays.asList(methods);
 	}
 
 	private  List<String> generateHeaders(List<Field> fields) {
