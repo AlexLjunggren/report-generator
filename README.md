@@ -1,12 +1,12 @@
 ## Report Generator ##
 
-Annotate member variables or methods (with no arguments) that will appear on the report
+Annotate member variables or methods that will appear on the report
 
 ```java
 @Reportable(headerName = "Name", order = 1)
 ```
 
-Annotate reportable member variables with formatters (*optional*)
+Annotate reportable member variables or methods with formatters (*optional*)
 
 ```java
 @DateFormatter(format = "yyyy-MM-dd")
