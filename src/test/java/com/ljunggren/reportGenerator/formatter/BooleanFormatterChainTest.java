@@ -57,4 +57,24 @@ public class BooleanFormatterChainTest {
 		assertEquals(expected, csv);
 	}
 	
+    public class MethodPojo {
+        @Reportable(headerName = "Validation", order = 0)
+        @BooleanFormatter(falseText = "Not Valid", trueText = "Valid")
+        public Boolean isValid() {
+            return true;
+        };
+    }
+
+    @Test
+    public void methodTest() {
+        MethodPojo pojo = new MethodPojo();
+        CSVGenerator generator = new CSVGenerator(Arrays.asList(new MethodPojo[] {pojo}), ',');
+        String csv = generator.generate();
+        String expected = new StringBuilder()
+                .append("Validation\r\n")
+                .append("Valid\r\n")
+                .toString();
+        assertEquals(expected, csv);
+    }
+    
 }

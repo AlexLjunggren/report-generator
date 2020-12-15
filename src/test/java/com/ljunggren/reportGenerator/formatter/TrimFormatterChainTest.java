@@ -45,4 +45,24 @@ public class TrimFormatterChainTest {
 		assertEquals(expected, csv);
 	}
 	
+    public class MethodPojo {
+        @Reportable(headerName = "Name", order = 0)
+        @TrimFormatter
+        public String getName() {
+            return "  Alex  ";
+        }
+    }
+
+    @Test
+    public void mathodTest() {
+        MethodPojo pojo = new MethodPojo();
+        CSVGenerator generator = new CSVGenerator(Arrays.asList(new MethodPojo[] {pojo}), ',');
+        String csv = generator.generate();
+        String expected = new StringBuilder()
+                .append("Name\r\n")
+                .append("Alex\r\n")
+                .toString();
+        assertEquals(expected, csv);
+    }
+    
 }

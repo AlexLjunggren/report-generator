@@ -108,5 +108,27 @@ public class DecimalFormatterChainTest {
 				.toString();
 		assertEquals(expected, csv);
 	}
+	
+    public class MethodPojo {
+        @Reportable(headerName = "Balance", order = 0)
+        @DecimalFormatter(format = "#.00")
+        public int getBalance() {
+            return 250;
+        }
+    }
+
+    @Test
+    public void methodTest() {
+        MethodPojo pojo = new MethodPojo();
+        CSVGenerator generator = new CSVGenerator(Arrays.asList(new MethodPojo[] {pojo}), ',');
+        String csv = generator.generate();
+        String expected = new StringBuilder()
+                .append("Balance\r\n")
+                .append("250.00\r\n")
+                .toString();
+        assertEquals(expected, csv);
+    }
+
+	
 
 }

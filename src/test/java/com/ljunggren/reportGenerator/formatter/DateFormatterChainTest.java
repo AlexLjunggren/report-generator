@@ -70,4 +70,24 @@ public class DateFormatterChainTest {
 		generator.generate();
 	}
 
+    public class MethodPojo {
+        @Reportable(headerName = "Date", order = 0)
+        @DateFormatter(format = "yyyy-MM-dd")
+        public Date getDate() throws ParseException {
+            return new SimpleDateFormat("yyyy/MM/dd").parse("2020/06/28");
+        };
+    }
+
+    @Test
+    public void methodTest() {
+        MethodPojo pojo = new MethodPojo();
+        CSVGenerator generator = new CSVGenerator(Arrays.asList(new MethodPojo[] {pojo}), ',');
+        String csv = generator.generate();
+        String expected = new StringBuilder()
+                .append("Date\r\n")
+                .append("2020-06-28\r\n")
+                .toString();
+        assertEquals(expected, csv);
+    }
+
 }

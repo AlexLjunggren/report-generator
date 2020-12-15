@@ -11,12 +11,9 @@ import lombok.Data;
 public class Item {
 
 	private Object value;
-	private Object reportable;
+	private AccessibleObject reportable;
 	
     public Annotation[] getAnnotations() {
-        return reportable instanceof AccessibleObject ? 
-                ((AccessibleObject) reportable).getAnnotations() : 
-                    new Annotation[] {};
+        return reportable == null ? new Annotation[] {} : reportable.getAnnotations();
     }
-
 }
