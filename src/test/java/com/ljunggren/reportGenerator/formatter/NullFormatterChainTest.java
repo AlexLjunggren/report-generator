@@ -71,4 +71,24 @@ public class NullFormatterChainTest {
 		assertEquals(expected, csv);
 	}
 	
+    public class MethodPojo {
+        @Reportable(headerName = "Validation", order = 0)
+        @NullFormatter(replacementText = "No Data")
+        public Boolean isValid() {
+            return null;
+        }
+    }
+
+    @Test
+    public void methodTest() {
+        MethodPojo pojo = new MethodPojo();
+        CSVGenerator generator = new CSVGenerator(Arrays.asList(new MethodPojo[] {pojo}), ',');
+        String csv = generator.generate();
+        String expected = new StringBuilder()
+                .append("Validation\r\n")
+                .append("No Data\r\n")
+                .toString();
+        assertEquals(expected, csv);
+    }
+    
 }

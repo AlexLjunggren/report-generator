@@ -103,4 +103,24 @@ public class StringFormatterChainTest {
 		assertEquals(expected, csv);
 	}
 	
+    public class MethodPojo {
+        @Reportable(headerName = "Name", order = 0)
+        @StringFormatter(format = Format.UPPERCASE)
+        public String getName() {
+            return "Alex";
+        }
+    }
+
+    @Test
+    public void methodTest() {
+        MethodPojo pojo = new MethodPojo();
+        CSVGenerator generator = new CSVGenerator(Arrays.asList(new MethodPojo[] {pojo}), ',');
+        String csv = generator.generate();
+        String expected = new StringBuilder()
+                .append("Name\r\n")
+                .append("ALEX\r\n")
+                .toString();
+        assertEquals(expected, csv);
+    }
+    
 }

@@ -32,7 +32,7 @@ import lombok.Getter;
 public abstract class Generator {
 	
 	private List<?> data;
-	private List<Object> reportables;
+	private List<AccessibleObject> reportables;
 	private List<String> headers;
 	private List<Record> records;
 	
@@ -54,10 +54,19 @@ public abstract class Generator {
 		return Arrays.asList(fields);
 	}
 	
-	private List<Object> order(List<Field> fields, List<Method> methods) {
-	    List<Object> reportables = Stream.concat(fields.stream(), methods.stream()).collect(Collectors.toList());
-        Collections.sort(reportables, new Comparator<Object>() {
-            public int compare(Object reportable1, Object reportable2) {
+    private List<Method> findAnnotatedMethods(List<?> data) {
+        if (data == null || data.isEmpty()) {
+            return new ArrayList<Method>();
+        }
+        Class<?> clazz = data.get(0).getClass();
+        Method[] methods = MethodUtils.getMethodsWithAnnotation(clazz, Reportable.class);
+        return Arrays.asList(methods);
+    }
+
+	private List<AccessibleObject> order(List<Field> fields, List<Method> methods) {
+	    List<AccessibleObject> reportables = Stream.concat(fields.stream(), methods.stream()).collect(Collectors.toList());
+        Collections.sort(reportables, new Comparator<AccessibleObject>() {
+            public int compare(AccessibleObject reportable1, AccessibleObject reportable2) {
                 int method1Order = getOrderFromReportable(reportable1);
                 int method2Order = getOrderFromReportable(reportable2);
                 return method1Order - method2Order;
@@ -66,36 +75,27 @@ public abstract class Generator {
         return reportables;
 	}
 	
-    private int getOrderFromReportable(Object reportable) {
-        return ((AccessibleObject) reportable).getAnnotation(Reportable.class).order();
+    private int getOrderFromReportable(AccessibleObject reportable) {
+        return reportable.getAnnotation(Reportable.class).order();
     }
     
-    private String getHeaderFromReportable(Object reportable) {
-        return ((AccessibleObject) reportable).getAnnotation(Reportable.class).headerName();
-    }
-
-	private List<Method> findAnnotatedMethods(List<?> data) {
-	    if (data == null || data.isEmpty()) {
-	        return new ArrayList<Method>();
-	    }
-        Class<?> clazz = data.get(0).getClass();
-        Method[] methods = MethodUtils.getMethodsWithAnnotation(clazz, Reportable.class);
-        return Arrays.asList(methods);
-	}
-
-	private List<String> generateHeaders(List<Object> reportables) {
+	private List<String> generateHeaders(List<AccessibleObject> reportables) {
 		List<String> headers = new ArrayList<String>();
 		reportables.forEach(reportable -> headers.add(getHeaderFromReportable(reportable)));
 		return headers;
 	}
 	
-	private List<Record> generateRecords(List<Object> reportables, List<?> data) {
+    private String getHeaderFromReportable(AccessibleObject reportable) {
+        return reportable.getAnnotation(Reportable.class).headerName();
+    }
+
+	private List<Record> generateRecords(List<AccessibleObject> reportables, List<?> data) {
 		List<Record> records = new ArrayList<Record>();
 		if (data != null && !data.isEmpty()) {
 			List<Item> items;
 			for (Object object: data) {
 				items = new ArrayList<Item>();
-				for (Object reportable: reportables) {
+				for (AccessibleObject reportable: reportables) {
 					try {
 						items.add(getValueFromReportable(reportable, object));
 					} catch (Exception e) {
@@ -108,7 +108,7 @@ public abstract class Generator {
 		return records;
 	}
 	
-    public Item getValueFromReportable(Object reportable, Object object) throws Exception {
+    public Item getValueFromReportable(AccessibleObject reportable, Object object) throws Exception {
         if (reportable instanceof Field) {
             Field field = (Field) reportable;
             Object value = FieldUtils.readField(field, object, true);
