@@ -20,7 +20,7 @@ public class CommaFormatterChainTest {
 		@CommaFormatter
 		private int balance;
 	}
-
+	
 	@Test
 	public void formatIntTest() {
 		FormatIntPojo pojo = new FormatIntPojo(2500000);
@@ -88,6 +88,26 @@ public class CommaFormatterChainTest {
 				.append("\r\n")
 				.toString();
 		assertEquals(expected, csv);
+	}
+	
+    public class MethodPojo {
+        @Reportable(headerName = "Balance", order = 0)
+        @CommaFormatter
+        public int getBalance() {
+            return 2500000;
+        }
+    }
+
+	@Test
+	public void methodTest() {
+        MethodPojo pojo = new MethodPojo();
+        CSVGenerator generator = new CSVGenerator(Arrays.asList(new MethodPojo[] {pojo}), ',');
+        String csv = generator.generate();
+        String expected = new StringBuilder()
+                .append("Balance\r\n")
+                .append("\"2,500,000\"\r\n")
+                .toString();
+        assertEquals(expected, csv);
 	}
 
 }
