@@ -50,8 +50,7 @@ public abstract class Generator {
 	        return new ArrayList<Field>();
 		}
 		Class<?> clazz = data.get(0).getClass();
-		Field[] fields = FieldUtils.getFieldsWithAnnotation(clazz, Reportable.class);
-		return Arrays.asList(fields);
+		return FieldUtils.getFieldsListWithAnnotation(clazz, Reportable.class);
 	}
 	
     private List<Method> findAnnotatedMethods(List<?> data) {
@@ -59,8 +58,7 @@ public abstract class Generator {
             return new ArrayList<Method>();
         }
         Class<?> clazz = data.get(0).getClass();
-        Method[] methods = MethodUtils.getMethodsWithAnnotation(clazz, Reportable.class);
-        return Arrays.asList(methods);
+        return MethodUtils.getMethodsListWithAnnotation(clazz, Reportable.class);
     }
 
 	private List<AccessibleObject> order(List<Field> fields, List<Method> methods) {
