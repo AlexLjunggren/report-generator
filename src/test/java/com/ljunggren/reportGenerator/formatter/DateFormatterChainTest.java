@@ -19,7 +19,7 @@ public class DateFormatterChainTest {
 	
 	@AllArgsConstructor
 	private class DateFormatPojo {
-		@Reportable(headerName = "Date", order = 0)
+		@Reportable(headerName = "Date", column= "A")
 		@DateFormatter(format = "yyyy-MM-dd")
 		private Date date;
 	}
@@ -58,7 +58,7 @@ public class DateFormatterChainTest {
 
 	@AllArgsConstructor
 	private class BadDateFormatPojo {
-		@Reportable(headerName = "Date", order = 0)
+		@Reportable(headerName = "Date", column= "A")
 		@DateFormatter(format = "nonsense")
 		private Date date;
 	}
@@ -71,7 +71,7 @@ public class DateFormatterChainTest {
 	}
 
     public class MethodPojo {
-        @Reportable(headerName = "Date", order = 0)
+        @Reportable(headerName = "Date", column= "A")
         @DateFormatter(format = "yyyy-MM-dd")
         public Date getDate() throws ParseException {
             return new SimpleDateFormat("yyyy/MM/dd").parse("2020/06/28");

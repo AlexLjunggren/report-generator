@@ -17,7 +17,7 @@ public class StringFormatterChainTest {
 	
 	@AllArgsConstructor
 	private class UppercasePojo {
-		@Reportable(headerName = "Name", order = 0)
+		@Reportable(headerName = "Name", column= "A")
 		@StringFormatter(format = Format.UPPERCASE)
 		private String name;
 	}
@@ -36,7 +36,7 @@ public class StringFormatterChainTest {
 	
 	@AllArgsConstructor
 	private class LowercasePojo {
-		@Reportable(headerName = "Name", order = 0)
+		@Reportable(headerName = "Name", column= "A")
 		@StringFormatter(format = Format.LOWERCASE)
 		private String name;
 	}
@@ -67,7 +67,7 @@ public class StringFormatterChainTest {
 	
 	@AllArgsConstructor
 	private class CapitalizePojo {
-		@Reportable(headerName = "Name", order = 0)
+		@Reportable(headerName = "Name", column= "A")
 		@StringFormatter(format = Format.CAPITALIZE)
 		private String name;
 	}
@@ -86,7 +86,7 @@ public class StringFormatterChainTest {
 	
 	@AllArgsConstructor
 	private class CapitalizeFullyPojo {
-		@Reportable(headerName = "Name", order = 0)
+		@Reportable(headerName = "Name", column= "A")
 		@StringFormatter(format = Format.CAPITALIZE_FULLY)
 		private String name;
 	}
@@ -104,7 +104,7 @@ public class StringFormatterChainTest {
 	}
 	
     public class MethodPojo {
-        @Reportable(headerName = "Name", order = 0)
+        @Reportable(headerName = "Name", column= "A")
         @StringFormatter(format = Format.UPPERCASE)
         public String getName() {
             return "Alex";

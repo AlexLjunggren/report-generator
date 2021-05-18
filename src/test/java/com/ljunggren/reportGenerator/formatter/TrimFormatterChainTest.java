@@ -16,7 +16,7 @@ public class TrimFormatterChainTest {
 
 	@AllArgsConstructor
 	private class TrimPojo {
-		@Reportable(headerName = "Name", order = 0)
+		@Reportable(headerName = "Name", column= "A")
 		@TrimFormatter
 		private String name;
 	}
@@ -46,7 +46,7 @@ public class TrimFormatterChainTest {
 	}
 	
     public class MethodPojo {
-        @Reportable(headerName = "Name", order = 0)
+        @Reportable(headerName = "Name", column= "A")
         @TrimFormatter
         public String getName() {
             return "  Alex  ";

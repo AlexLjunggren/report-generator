@@ -16,7 +16,7 @@ public class NullFormatterChainTest {
 
 	@AllArgsConstructor
 	private class BooleanPojo {
-		@Reportable(headerName = "Validation", order = 0)
+		@Reportable(headerName = "Validation", column= "A")
 		@NullFormatter(replacementText = "No Data")
 		private Boolean valid;
 	}
@@ -35,7 +35,7 @@ public class NullFormatterChainTest {
 	
 	@AllArgsConstructor
 	private class IntegerPojo {
-		@Reportable(headerName = "Balance", order = 0)
+		@Reportable(headerName = "Balance", column= "A")
 		@NullFormatter(replacementText = "No Data")
 		private Integer balance;
 	}
@@ -54,7 +54,7 @@ public class NullFormatterChainTest {
 
 	@AllArgsConstructor
 	private class StringPojo {
-		@Reportable(headerName = "Name", order = 0)
+		@Reportable(headerName = "Name", column= "A")
 		@NullFormatter(replacementText = "No Data")
 		private String name;
 	}
@@ -72,7 +72,7 @@ public class NullFormatterChainTest {
 	}
 	
     public class MethodPojo {
-        @Reportable(headerName = "Validation", order = 0)
+        @Reportable(headerName = "Validation", column= "A")
         @NullFormatter(replacementText = "No Data")
         public Boolean isValid() {
             return null;

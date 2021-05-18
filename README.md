@@ -3,7 +3,7 @@
 Annotate member variables or methods that will appear on the report
 
 ```java
-@Reportable(headerName = "Name", order = 1)
+@Reportable(headerName = "Name", column = "A")
 ```
 
 Annotate reportable member variables or methods with formatters (*optional*)

@@ -17,7 +17,7 @@ public class CurrencyFormatterChainTest {
 
 	@AllArgsConstructor
 	private class USDFormatIntPojo {
-		@Reportable(headerName = "Balance", order = 0)
+		@Reportable(headerName = "Balance", column= "A")
 		@CurrencyFormatter(format = Currency.USD)
 		private int balance;
 	}
@@ -36,7 +36,7 @@ public class CurrencyFormatterChainTest {
 
 	@AllArgsConstructor
 	private class USDFormatDoublePojo {
-		@Reportable(headerName = "Balance", order = 0)
+		@Reportable(headerName = "Balance", column= "A")
 		@CurrencyFormatter(format = Currency.USD)
 		private double balance;
 	}
@@ -55,7 +55,7 @@ public class CurrencyFormatterChainTest {
 
 	@AllArgsConstructor
 	private class USDFormatFloatPojo {
-		@Reportable(headerName = "Balance", order = 0)
+		@Reportable(headerName = "Balance", column= "A")
 		@CurrencyFormatter(format = Currency.USD)
 		private double balance;
 	}
@@ -74,7 +74,7 @@ public class CurrencyFormatterChainTest {
 
 	@AllArgsConstructor
 	private class USDFormatLongPojo {
-		@Reportable(headerName = "Balance", order = 0)
+		@Reportable(headerName = "Balance", column= "A")
 		@CurrencyFormatter(format = Currency.USD)
 		private long balance;
 	}
@@ -92,7 +92,7 @@ public class CurrencyFormatterChainTest {
 	}
 
     public class MethodPojo {
-        @Reportable(headerName = "Balance", order = 0)
+        @Reportable(headerName = "Balance", column= "A")
         @CurrencyFormatter(format = Currency.USD)
         public int getBalance() {
             return 250;

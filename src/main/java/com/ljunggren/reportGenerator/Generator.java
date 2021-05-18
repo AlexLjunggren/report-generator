@@ -25,6 +25,7 @@ import com.ljunggren.reportGenerator.formatter.FormatterCatchAll;
 import com.ljunggren.reportGenerator.formatter.NullFormatterChain;
 import com.ljunggren.reportGenerator.formatter.StringFormatterChain;
 import com.ljunggren.reportGenerator.formatter.TrimFormatterChain;
+import com.ljunggren.reportGenerator.utils.GeneratorUtils;
 
 import lombok.Getter;
 
@@ -65,16 +66,16 @@ public abstract class Generator {
 	    List<AccessibleObject> reportables = Stream.concat(fields.stream(), methods.stream()).collect(Collectors.toList());
         Collections.sort(reportables, new Comparator<AccessibleObject>() {
             public int compare(AccessibleObject reportable1, AccessibleObject reportable2) {
-                int method1Order = getOrderFromReportable(reportable1);
-                int method2Order = getOrderFromReportable(reportable2);
+                int method1Order = GeneratorUtils.columnToInt(getOrderFromReportable(reportable1));
+                int method2Order = GeneratorUtils.columnToInt(getOrderFromReportable(reportable2));
                 return method1Order - method2Order;
            }
         });
         return reportables;
 	}
 	
-    private int getOrderFromReportable(AccessibleObject reportable) {
-        return reportable.getAnnotation(Reportable.class).order();
+    private String getOrderFromReportable(AccessibleObject reportable) {
+        return reportable.getAnnotation(Reportable.class).column();
     }
     
 	private List<String> generateHeaders(List<AccessibleObject> reportables) {

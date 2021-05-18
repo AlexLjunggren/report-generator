@@ -16,7 +16,7 @@ public class BooleanFormatterChainTest {
 
 	@AllArgsConstructor
 	private class BooleanPojo {
-		@Reportable(headerName = "Validation", order = 0)
+		@Reportable(headerName = "Validation", column= "A")
 		@BooleanFormatter(falseText = "Not Valid", trueText = "Valid")
 		private Boolean valid;
 	}
@@ -58,7 +58,7 @@ public class BooleanFormatterChainTest {
 	}
 	
     public class MethodPojo {
-        @Reportable(headerName = "Validation", order = 0)
+        @Reportable(headerName = "Validation", column= "A")
         @BooleanFormatter(falseText = "Not Valid", trueText = "Valid")
         public Boolean isValid() {
             return true;

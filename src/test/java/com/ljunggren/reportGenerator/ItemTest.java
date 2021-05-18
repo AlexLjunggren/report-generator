@@ -17,11 +17,11 @@ import com.ljunggren.reportGenerator.annotation.StringFormatter.Format;
 public class ItemTest {
     
     public class TestPojo {
-        @Reportable(headerName = "Name", order = 1)
+        @Reportable(headerName = "Name", column = "A")
         @StringFormatter(format = Format.UPPERCASE)
         private String name;
         
-        @Reportable(headerName = "Application", order = 3)
+        @Reportable(headerName = "Application", column = "B")
         public String getApplication() {
             return "Report Generator";
         }

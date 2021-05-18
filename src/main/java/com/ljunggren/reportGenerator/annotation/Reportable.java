@@ -10,6 +10,6 @@ import java.lang.annotation.Target;
 public @interface Reportable {
 
 	String headerName();
-	int order();
+	String column();
 	
 }

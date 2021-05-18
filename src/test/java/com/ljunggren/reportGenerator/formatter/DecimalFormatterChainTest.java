@@ -16,7 +16,7 @@ public class DecimalFormatterChainTest {
 
 	@AllArgsConstructor
 	private class IntFormatPojo {
-		@Reportable(headerName = "Balance", order = 0)
+		@Reportable(headerName = "Balance", column= "A")
 		@DecimalFormatter(format = "#.00")
 		private int balance;
 	}
@@ -35,7 +35,7 @@ public class DecimalFormatterChainTest {
 
 	@AllArgsConstructor
 	private class DoubleFormatPojo {
-		@Reportable(headerName = "Balance", order = 0)
+		@Reportable(headerName = "Balance", column= "A")
 		@DecimalFormatter(format = "#.00")
 		private double balance;
 	}
@@ -54,7 +54,7 @@ public class DecimalFormatterChainTest {
 
 	@AllArgsConstructor
 	private class FloatFormatPojo {
-		@Reportable(headerName = "Balance", order = 0)
+		@Reportable(headerName = "Balance", column= "A")
 		@DecimalFormatter(format = "#.00")
 		private float balance;
 	}
@@ -73,7 +73,7 @@ public class DecimalFormatterChainTest {
 
 	@AllArgsConstructor
 	private class FloatObjectFormatPojo {
-		@Reportable(headerName = "Balance", order = 0)
+		@Reportable(headerName = "Balance", column= "A")
 		@DecimalFormatter(format = "#.00")
 		private Float balance;
 	}
@@ -92,7 +92,7 @@ public class DecimalFormatterChainTest {
 
 	@AllArgsConstructor
 	private class LongFormatPojo {
-		@Reportable(headerName = "Balance", order = 0)
+		@Reportable(headerName = "Balance", column= "A")
 		@DecimalFormatter(format = "#.00")
 		private long balance;
 	}
@@ -110,7 +110,7 @@ public class DecimalFormatterChainTest {
 	}
 	
     public class MethodPojo {
-        @Reportable(headerName = "Balance", order = 0)
+        @Reportable(headerName = "Balance", column= "A")
         @DecimalFormatter(format = "#.00")
         public int getBalance() {
             return 250;

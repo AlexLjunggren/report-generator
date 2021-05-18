@@ -14,23 +14,23 @@ import lombok.Data;
 @Builder
 public class TestPojo {
 
-	@Reportable(headerName = "Name", order = 1)
+	@Reportable(headerName = "Name", column = "B")
 	@StringFormatter(format = Format.UPPERCASE)
 	private String name;
 	
-	@Reportable(headerName = "Year", order = 0)
+	@Reportable(headerName = "Year", column = "A")
 	private int year;
 	
 	private String city;
 	
-	@Reportable(headerName = "Group", order = 2)
+	@Reportable(headerName = "Group", column = "C")
 	private String group;
 	
-	@Reportable(headerName = "Touch Date", order = 99)
+	@Reportable(headerName = "Touch Date", column = "E")
 	@DateFormatter(format = "yyyy-MM-dd")
 	private Date touchDate;
 	
-    @Reportable(headerName = "Application", order = 3)
+    @Reportable(headerName = "Application", column = "D")
 	public String getApplication() {
 	    return "Report Generator";
 	}

@@ -19,7 +19,7 @@ public class FormatIntegrationTest {
 
 	@AllArgsConstructor
 	private class UpperTrimPojo {
-		@Reportable(headerName = "Name", order = 0)
+		@Reportable(headerName = "Name", column= "A")
 		@StringFormatter(format = Format.UPPERCASE)
 		@TrimFormatter
 		private String name;
@@ -39,7 +39,7 @@ public class FormatIntegrationTest {
 	
 	@AllArgsConstructor
 	private class TrimUpperPojo {
-		@Reportable(headerName = "Name", order = 0)
+		@Reportable(headerName = "Name", column= "A")
 		@TrimFormatter
 		@StringFormatter(format = Format.UPPERCASE)
 		private String name;
@@ -59,7 +59,7 @@ public class FormatIntegrationTest {
 	
 	@AllArgsConstructor
 	private class NullTrimCapitalizeFullPojo {
-		@Reportable(headerName = "Name", order = 0)
+		@Reportable(headerName = "Name", column= "A")
 		@NullFormatter(replacementText = " no data ")
 		@StringFormatter(format = Format.CAPITALIZE_FULLY)
 		@TrimFormatter

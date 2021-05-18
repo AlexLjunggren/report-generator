@@ -15,7 +15,7 @@ public class FormatterCatchAllTest {
 
 	@AllArgsConstructor
 	private class Pojo {
-		@Reportable(headerName = "Name", order = 0)
+		@Reportable(headerName = "Name", column= "A")
 		private String name;
 	}
 

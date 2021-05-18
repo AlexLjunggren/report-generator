@@ -16,7 +16,7 @@ public class CommaFormatterChainTest {
 
 	@AllArgsConstructor
 	private class FormatIntPojo {
-		@Reportable(headerName = "Balance", order = 0)
+		@Reportable(headerName = "Balance", column= "A")
 		@CommaFormatter
 		private int balance;
 	}
@@ -35,7 +35,7 @@ public class CommaFormatterChainTest {
 
 	@AllArgsConstructor
 	private class FormatDoublePojo {
-		@Reportable(headerName = "Balance", order = 0)
+		@Reportable(headerName = "Balance", column= "A")
 		@CommaFormatter
 		private double balance;
 	}
@@ -54,7 +54,7 @@ public class CommaFormatterChainTest {
 
 	@AllArgsConstructor
 	private class FormatLongPojo {
-		@Reportable(headerName = "Balance", order = 0)
+		@Reportable(headerName = "Balance", column= "A")
 		@CommaFormatter
 		private long balance;
 	}
@@ -73,7 +73,7 @@ public class CommaFormatterChainTest {
 
 	@AllArgsConstructor
 	private class FormatNulltPojo {
-		@Reportable(headerName = "Balance", order = 0)
+		@Reportable(headerName = "Balance", column= "A")
 		@CommaFormatter
 		private Integer balance;
 	}
@@ -91,7 +91,7 @@ public class CommaFormatterChainTest {
 	}
 	
     public class MethodPojo {
-        @Reportable(headerName = "Balance", order = 0)
+        @Reportable(headerName = "Balance", column= "A")
         @CommaFormatter
         public int getBalance() {
             return 2500000;
