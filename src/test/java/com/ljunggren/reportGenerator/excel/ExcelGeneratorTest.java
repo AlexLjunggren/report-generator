@@ -1,6 +1,6 @@
 package com.ljunggren.reportGenerator.excel;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -15,7 +15,6 @@ import org.junit.Test;
 
 import com.ljunggren.reportGenerator.Record;
 import com.ljunggren.reportGenerator.TestPojo;
-import com.ljunggren.reportGenerator.excel.ExcelGenerator;
 
 public class ExcelGeneratorTest {
 

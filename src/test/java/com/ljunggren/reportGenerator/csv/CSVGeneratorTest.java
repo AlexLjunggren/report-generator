@@ -12,7 +12,6 @@ import org.junit.Test;
 
 import com.ljunggren.reportGenerator.Record;
 import com.ljunggren.reportGenerator.TestPojo;
-import com.ljunggren.reportGenerator.csv.CSVGenerator;
 
 public class CSVGeneratorTest {
 	
