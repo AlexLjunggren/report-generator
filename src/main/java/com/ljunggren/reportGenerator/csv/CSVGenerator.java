@@ -14,7 +14,11 @@ import com.ljunggren.reportGenerator.Record;
 
 public class CSVGenerator extends Generator {
 	
-	private char delimiter;
+	private char delimiter = ',';
+	
+	public CSVGenerator(List<?> data) {
+	    super(data);
+	}
 
 	public CSVGenerator(List<?> data, char delimiter) {
 		super(data);
