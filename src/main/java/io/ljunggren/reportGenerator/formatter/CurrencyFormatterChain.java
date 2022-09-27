@@ -1,6 +1,7 @@
 package io.ljunggren.reportGenerator.formatter;
 
 import java.lang.annotation.Annotation;
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
 
 import io.ljunggren.reportGenerator.Item;
@@ -22,7 +23,8 @@ public class CurrencyFormatterChain extends FormatterChain {
 		return value instanceof Integer ||
 				value instanceof Double ||
 				value instanceof Float ||
-				value instanceof Long;
+				value instanceof Long ||
+				value instanceof BigDecimal;
 	}
 	
 	private String format(Object value, CurrencyFormatter.Currency format) {

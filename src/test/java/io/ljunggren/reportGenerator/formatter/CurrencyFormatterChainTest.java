@@ -2,6 +2,7 @@ package io.ljunggren.reportGenerator.formatter;
 
 import static org.junit.Assert.assertEquals;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 
 import org.junit.Test;
@@ -56,12 +57,12 @@ public class CurrencyFormatterChainTest {
 	private class USDFormatFloatPojo {
 		@Reportable(headerName = "Balance", column= "A")
 		@CurrencyFormatter(format = Currency.USD)
-		private double balance;
+		private float balance;
 	}
 
 	@Test
-	public void USDFormatFloatPojo() {
-		USDFormatFloatPojo pojo = new USDFormatFloatPojo(250.253);
+	public void USDFormatFloatTest() {
+		USDFormatFloatPojo pojo = new USDFormatFloatPojo(250.253f);
 		CSVGenerator generator = new CSVGenerator(Arrays.asList(new USDFormatFloatPojo[] {pojo}), ',');
 		String csv = generator.generate();
 		String expected = new StringBuilder()
@@ -79,7 +80,7 @@ public class CurrencyFormatterChainTest {
 	}
 
 	@Test
-	public void USDFormatLongPojo() {
+	public void USDFormatLongTest() {
 		USDFormatLongPojo pojo = new USDFormatLongPojo(250L);
 		CSVGenerator generator = new CSVGenerator(Arrays.asList(new USDFormatLongPojo[] {pojo}), ',');
 		String csv = generator.generate();
@@ -89,6 +90,44 @@ public class CurrencyFormatterChainTest {
 				.toString();
 		assertEquals(expected, csv);
 	}
+
+    @AllArgsConstructor
+    private class USDFormatBigDecimalPojo {
+        @Reportable(headerName = "Balance", column= "A")
+        @CurrencyFormatter(format = Currency.USD)
+        private BigDecimal balance;
+    }
+
+    @Test
+    public void USDFormatBigDecimalTest() {
+        USDFormatBigDecimalPojo pojo = new USDFormatBigDecimalPojo(new BigDecimal(250.253));
+        CSVGenerator generator = new CSVGenerator(Arrays.asList(new USDFormatBigDecimalPojo[] {pojo}), ',');
+        String csv = generator.generate();
+        String expected = new StringBuilder()
+                .append("Balance\r\n")
+                .append("$250.25\r\n")
+                .toString();
+        assertEquals(expected, csv);
+    }
+
+    @AllArgsConstructor
+    private class USDFormatStringPojo {
+        @Reportable(headerName = "Balance", column= "A")
+        @CurrencyFormatter(format = Currency.USD)
+        private String balance;
+    }
+    
+    @Test
+    public void USDFormatStringTest() {
+        USDFormatStringPojo pojo = new USDFormatStringPojo("250.253");
+        CSVGenerator generator = new CSVGenerator(Arrays.asList(new USDFormatStringPojo[] {pojo}), ',');
+        String csv = generator.generate();
+        String expected = new StringBuilder()
+                .append("Balance\r\n")
+                .append("250.253\r\n")
+                .toString();
+        assertEquals(expected, csv);
+    }
 
     public class MethodPojo {
         @Reportable(headerName = "Balance", column= "A")
