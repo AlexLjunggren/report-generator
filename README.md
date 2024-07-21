@@ -26,6 +26,15 @@ new CSVGenerator(List<?> data, char delimiter).generate(); // returns CSV String
 new ExcelGenerator(List<?> data).generate(); // returns POI Workbook
 ```
 
+## Auto Size ##
+
+```java
+@AutoSize
+@Reportable(headerName = "Name", column = "A")
+```
+
+AutoSize coupled with Reportable will set the Excel columns to auto-adjust with column width to fit content
+
 ## Date Formatter ##
 
 ```java
@@ -76,6 +85,7 @@ Data types supported
 - Double
 - Float
 - Long
+- Big Decimal
 
 Options   
 - Format.USD
