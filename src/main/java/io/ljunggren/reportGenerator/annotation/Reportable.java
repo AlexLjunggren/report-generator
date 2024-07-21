@@ -11,5 +11,6 @@ public @interface Reportable {
 
 	String headerName();
 	String column();
+	boolean autoSize() default false;
 	
 }

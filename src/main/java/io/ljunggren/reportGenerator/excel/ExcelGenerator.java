@@ -20,18 +20,14 @@ public class ExcelGenerator extends Generator {
 
 	@Override
 	public Workbook generate() {
-		Workbook workbook = generateWorkbook(getHeaders(), getRecords());
+		Workbook workbook = new XSSFWorkbook();
+		Sheet sheet = workbook.createSheet();
+		setHeaders(workbook, sheet, getHeaders());
+		setData(workbook, sheet, getRecords());
+        setAutoSizedColumns(sheet, getAutoSizedColumns());
 		return workbook;
 	}
 	
-	private Workbook generateWorkbook(List<String> headers, List<Record> records) {
-		Workbook workbook = new XSSFWorkbook();
-		Sheet sheet = workbook.createSheet();
-		setHeaders(workbook, sheet, headers);
-		setData(workbook, sheet, records);
-		return workbook;
-	}
-
 	private void setHeaders(Workbook workbook, Sheet sheet, List<String> headers) {
 		Row row = sheet.createRow(0);
 		int index = 0;
@@ -53,4 +49,8 @@ public class ExcelGenerator extends Generator {
 		}
 	}
 	
+    private void setAutoSizedColumns(Sheet sheet, List<Integer> autoSizedColumns) {
+        autoSizedColumns.stream().forEach(column -> sheet.autoSizeColumn(column));
+    }
+
 }

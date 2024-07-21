@@ -15,6 +15,7 @@ import java.util.stream.Stream;
 import org.apache.commons.lang3.reflect.FieldUtils;
 import org.apache.commons.lang3.reflect.MethodUtils;
 
+import io.ljunggren.reportGenerator.annotation.AutoSize;
 import io.ljunggren.reportGenerator.annotation.Reportable;
 import io.ljunggren.reportGenerator.formatter.BooleanFormatterChain;
 import io.ljunggren.reportGenerator.formatter.CommaFormatterChain;
@@ -35,6 +36,7 @@ public abstract class Generator {
 	private List<AccessibleObject> reportables;
 	private List<String> headers;
 	private List<Record> records;
+	private List<Integer> autoSizedColumns;
 	
 	public abstract Object generate();
 	
@@ -43,6 +45,7 @@ public abstract class Generator {
 		this.reportables = order(findAnnotatedFields(data), findAnnotatedMethods(data));
 		this.headers = generateHeaders(reportables);
 		this.records = generateRecords(reportables, data);
+		this.autoSizedColumns = getAutoSizedColumns(reportables);
 	}
 	
 	private List<Field> findAnnotatedFields(List<?> data) {
@@ -85,6 +88,18 @@ public abstract class Generator {
 	
     private String getHeaderFromReportable(AccessibleObject reportable) {
         return reportable.getAnnotation(Reportable.class).headerName();
+    }
+    
+    private List<Integer> getAutoSizedColumns(List<AccessibleObject> reportables) {
+        return reportables.stream()
+                .filter(reportable -> isAutoSized(reportable))
+                .map(reportable -> GeneratorUtils.columnToInt(getOrderFromReportable(reportable)))
+                .collect(Collectors.toList());
+    }
+    
+    private boolean isAutoSized(AccessibleObject reportable) {
+        AutoSize autoSize = reportable.getAnnotation(AutoSize.class);
+        return autoSize != null;
     }
 
 	private List<Record> generateRecords(List<AccessibleObject> reportables, List<?> data) {
