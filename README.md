@@ -131,3 +131,13 @@ Data types supported
 
 Data types supported 
 - String
+
+## HyperLink ##
+
+```java
+@Hyperlink
+```
+
+Creates a hyperlink out of the cell data
+
+**Note:** Only applies to ExcelGenerator
