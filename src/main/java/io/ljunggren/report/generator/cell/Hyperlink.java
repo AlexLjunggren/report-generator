@@ -11,13 +11,11 @@ import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFHyperlink;
 
-import io.ljunggren.report.generator.annotation.HyperLink;
-
-public class HyperLinkChain extends CellChain {
+public class Hyperlink extends CellChain {
 
     @Override
     public void format(Annotation annotation, Cell cell, Workbook workbook) {
-        if (annotation.annotationType() == HyperLink.class) {
+        if (annotation.annotationType() == Hyperlink.class) {
             format(cell, workbook);
             return;
         }
