@@ -11,7 +11,9 @@ import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFHyperlink;
 
-public class Hyperlink extends CellChain {
+import io.ljunggren.report.generator.annotation.Hyperlink;
+
+public class HyperlinkChain extends CellChain {
 
     @Override
     public void format(Annotation annotation, Cell cell, Workbook workbook) {

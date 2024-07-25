@@ -14,7 +14,7 @@ import io.ljunggren.report.generator.Generator;
 import io.ljunggren.report.generator.Item;
 import io.ljunggren.report.generator.Record;
 import io.ljunggren.report.generator.cell.CellCatchAll;
-import io.ljunggren.report.generator.cell.Hyperlink;
+import io.ljunggren.report.generator.cell.HyperlinkChain;
 
 public class ExcelGenerator extends Generator {
 
@@ -60,7 +60,7 @@ public class ExcelGenerator extends Generator {
 	}
 	
     private void processChain(Annotation annotation, Cell cell, Workbook workbook) {
-        new Hyperlink().nextChain(
+        new HyperlinkChain().nextChain(
                 new CellCatchAll()
                         ).format(annotation, cell, workbook);
     }
