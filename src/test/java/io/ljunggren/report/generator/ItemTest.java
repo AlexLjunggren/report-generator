@@ -10,7 +10,6 @@ import org.apache.commons.lang3.reflect.FieldUtils;
 import org.apache.commons.lang3.reflect.MethodUtils;
 import org.junit.Test;
 
-import io.ljunggren.report.generator.Item;
 import io.ljunggren.report.generator.annotation.Reportable;
 import io.ljunggren.report.generator.annotation.StringFormatter;
 import io.ljunggren.report.generator.annotation.StringFormatter.Format;

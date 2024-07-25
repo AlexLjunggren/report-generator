@@ -8,8 +8,8 @@ import java.util.Arrays;
 import org.junit.Test;
 
 import io.ljunggren.report.generator.annotation.CurrencyFormatter;
-import io.ljunggren.report.generator.annotation.Reportable;
 import io.ljunggren.report.generator.annotation.CurrencyFormatter.Currency;
+import io.ljunggren.report.generator.annotation.Reportable;
 import io.ljunggren.report.generator.csv.CSVGenerator;
 import lombok.AllArgsConstructor;
 

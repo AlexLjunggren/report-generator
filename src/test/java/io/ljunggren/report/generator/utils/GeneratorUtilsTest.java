@@ -4,8 +4,6 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import io.ljunggren.report.generator.utils.GeneratorUtils;
-
 public class GeneratorUtilsTest {
 
     @Test

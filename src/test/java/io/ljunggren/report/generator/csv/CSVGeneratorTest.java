@@ -12,7 +12,6 @@ import org.junit.Test;
 
 import io.ljunggren.report.generator.Record;
 import io.ljunggren.report.generator.TestPojo;
-import io.ljunggren.report.generator.csv.CSVGenerator;
 
 public class CSVGeneratorTest {
 	

@@ -9,8 +9,8 @@ import org.junit.Test;
 import io.ljunggren.report.generator.annotation.NullFormatter;
 import io.ljunggren.report.generator.annotation.Reportable;
 import io.ljunggren.report.generator.annotation.StringFormatter;
-import io.ljunggren.report.generator.annotation.TrimFormatter;
 import io.ljunggren.report.generator.annotation.StringFormatter.Format;
+import io.ljunggren.report.generator.annotation.TrimFormatter;
 import io.ljunggren.report.generator.csv.CSVGenerator;
 import lombok.AllArgsConstructor;
 
